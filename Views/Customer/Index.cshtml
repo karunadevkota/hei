@@ -1,0 +1,82 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model PagedList.IPagedList<TAskHEI.Models.Customer>
+
+<div class="container">
+    <h1 class="text-center mt-2">Our Customers</h1>
+    <a class="btn btn-primary mt-3" href="/Customer/Create">Create New Customer</a>
+    <form method="get" action="@Url.Action("Index")" class="mt-3">
+        <div class="input-group">
+            <input type="text" name="searchQuery" placeholder="Search by name" class="form-control" />
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </form>
+    <div class="table-responsive mt-3">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var customer in Model)
+                {
+                    <tr>
+                        <td>@customer.CustomerID</td> @*displays the CustomerId  in a table*@
+                        <td>@customer.Name</td> @*displays the Name   in a table*@
+                        <td>@customer.Email</td> @*displays the Email  in a table*@
+                        <td>@customer.PhoneNumber</td> @*displays the PhoneNumber   in a table*@
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a class="btn btn-primary" href="/Customer/Edit/@customer.CustomerID">Edit</a>
+                                <a class="btn btn-danger" href="/Customer/Delete/@customer.CustomerID">Delete</a>
+                                <a class="btn btn-success " href="/Customer/Details/@customer.CustomerID">
+                                    View Details
+                                </a> @*craetes a button that links  to the details  action of the CustomerController passing the customerid*@
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <!-- Pagination Links -->
+    @{
+        var searchQuery = ViewContext.HttpContext.Request.Query["searchQuery"];
+        var pageNumber = Model.PageNumber;
+        var pageSize = Model.PageSize;
+        var totalCount = Model.TotalItemCount;
+        var totalPages = Model.PageCount;
+    }
+    <div class="text-center mt-3">
+        Page @(pageNumber) of @totalPages
+        @if (!String.IsNullOrEmpty(searchQuery))
+        {
+            <span>Search Result For: @searchQuery</span> @*displays the search result*@
+        }
+    </div>
+    <div class="text-center mt-3">
+        @if (pageNumber > 1) @*if page is greater than1 generates a link to the previous page by subtracting 1 from the current page number in the URL.*@ 
+        {
+            <a href="@Url.Action("Index", new { page = pageNumber - 1, searchQuery })" class="btn btn-primary">Previous</a>
+        }
+        @if (pageNumber < totalPages) @*if the page is less tha total page  generates the link to next page *@
+        {
+            <a href="@Url.Action("Index", new { page = pageNumber + 1, searchQuery })" class="btn btn-primary">Next ></a>
+        }
+    </div>
+</div>
+
+<style>
+    .container {
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+</style>

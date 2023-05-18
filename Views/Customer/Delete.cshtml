@@ -1,0 +1,13 @@
+﻿@model Customer
+<div class="container">
+    <h1>Delete Customer</h1>
+
+    <p>Are you sure you want to delete customer <strong>@Model.Name</strong>?</p>
+
+    <form asp-action="DeleteConfirmed" asp-route-id="@Model.CustomerID" method="post">
+        <div class="form-group">
+            <button type="submit" class="btn btn-danger">Delete</button>
+            <a class="btn btn-secondary" href="/Customer/Index">Cancel</a>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,28 @@
+﻿@model Customer
+@*allows to access and display properties off the Customer *@
+<div class="container">
+    <h1 class="text-center mt-2">Create Customer</h1>
+
+    <div class="form-box">
+        <form asp-action="Create" method="post">
+            <div class="form-group">
+                <label for="Name">Name:</label>
+                <input class="form-control" type="text" id="Name" name="Name" value="@Model.Name" required>
+            </div>
+            <div class="form-group">
+                <label for="Email">Email:</label>
+                <input class="form-control" type="email" id="Email" name="Email" value="@Model.Email" required pattern="[a-zA-Z0-9._%+-]+@@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" title="Please enter a valid email address.">
+            </div>
+            <div class="form-group">
+                <label for="PhoneNumber">Phone Number:</label>
+                <input class="form-control" type="tel" id="PhoneNumber" name="PhoneNumber" value="@Model.PhoneNumber" required>
+            </div>
+            <div class="form-group">
+                <label for="Address">Address :</label>
+                <input class="form-control" type="text" id="Address" name="Address" value="@Model.Address" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+            <a class="btn btn-secondary" href="/Customer/Index">Cancel</a>
+        </form>
+    </div>
+</div>

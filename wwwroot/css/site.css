@@ -1,0 +1,70 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+}
+
+.navbar {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navbar-toggler {
+    border: none;
+    outline: none;
+}
+
+.navbar-toggler-icon {
+    background-color: #333;
+}
+
+.jumbotron {
+    background-image: url("/img/1.jpg");
+    background-size: cover;
+    color: #fff;
+    text-align: center;
+    padding: 150px 0;
+    margin-bottom: 0;
+}
+
+    .jumbotron h1 {
+        font-size: 48px;
+        font-weight: bold;
+        margin-bottom: 32px;
+    }
+
+    .jumbotron p {
+        font-size: 20px;
+        margin-bottom: 32px;
+    }
+
+.btn-primary:hover {
+    background-color: gray;
+}
+
+.container {
+    padding: 40px;
+}
+
+.custom-button {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+    .custom-button:hover {
+        background-color: #6c757d;
+        border-color: #6c757d;
+    }
+.form-box {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 400px;
+    border-radius: 5px;
+}
